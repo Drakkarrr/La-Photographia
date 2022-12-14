@@ -7,21 +7,7 @@
   ],
   "jsRules": {},
   "rules": {
-    "quotemark": [true, "single"],
-    "indent": [true, "spaces"],
-    "no-debugger": true,
-    "no-var-requires": false,
-    "no-unused-variable": true,
-    "no-unused-expression": true,
-    "no-empty": false,
-    "no-internal-module": true,
-    "no-trailing-whitespace": true,
-    "no-eval": true,
-    "no-irregular-whitespace": true,
-    "no-consecutive-blank-lines": true,
-    "no-constant-condition": true,
-    "no-conditional-assignment": true,
-    "no-construct": true
+    "quotemark": [true, "single"]
   },
   "rulesDirectory": []
 }

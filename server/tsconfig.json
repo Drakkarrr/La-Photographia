@@ -1,17 +1,25 @@
 {
   "compilerOptions": {
-    "module": "ES2022",
     "esModuleInterop": true,
+    "module": "ESNext",
     "target": "es2022",
+    "resolveJsonModule": true,
     "noImplicitAny": true,
+    "skipLibCheck": true,
+    "importHelpers": true,
+    "types": ["node"],
+    "strict": true,
     "moduleResolution": "node",
     "sourceMap": true,
     "outDir": "dist", 
     "baseUrl": "src",
     "paths": {
-      "*": ["node_modules/*", "src/types/*"]
+      "*": ["node_modules/*", "src"]
     }
   },
-  "include": ["src/**/*"],
+  "ts-node": {
+    "esm": true
+  },
+  "include": ["./src/**/*.ts"],
   "exclude": ["src/public"]
 }
