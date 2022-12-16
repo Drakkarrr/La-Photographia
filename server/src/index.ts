@@ -10,10 +10,11 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 import { register } from './controllers/auth.controller';
-
 import authRoutes from './routes/auth.routes';
+
 import userRoutes from './routes/users.routes';
 import postRoutes from './routes/posts.routes';
+
 
 
 /* MIDDLEWARE CONFIGS */

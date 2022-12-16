@@ -1,10 +1,11 @@
-import Post from "../models/Post.js";
-import User from "../models/User.js";
+import express from 'express'
+import Post from "../models/post.model";
+import User from "../models/user.model";
 
 /* CREATE */
-export const createPost = async (req, res) => {
+export const createPost = async (req: express.Request, res: express.Response): Promise<void> => {
     try {
-        const { userId, description, picturePath } = req.body;
+        const { userId, description, picturePath } = req.body as any;
         const user = await User.findById(userId);
         const newPost = new Post({
             userId,
@@ -19,35 +20,35 @@ export const createPost = async (req, res) => {
         });
         await newPost.save();
 
-        const post = await Post.find();
-        res.status(201).json(post);
-    } catch (err) {
+        const post = await Post.find()
+        res.status(201).json(post)
+    } catch (err: any) {
         res.status(409).json({ message: err.message });
     }
 };
 
 /* READ */
-export const getFeedPosts = async (req, res) => {
+export const getFeedPosts = async (req: express.Request, res: express.Response): Promise<void> => {
     try {
         const post = await Post.find();
         res.status(200).json(post);
-    } catch (err) {
+    } catch (err: any) {
         res.status(404).json({ message: err.message });
     }
 };
 
-export const getUserPosts = async (req, res) => {
+export const getUserPosts = async (req: express.Request, res: express.Response): Promise<void> => {
     try {
-        const { userId } = req.params;
+        const { userId } = req.params as any;
         const post = await Post.find({ userId });
         res.status(200).json(post);
-    } catch (err) {
+    } catch (err: any) {
         res.status(404).json({ message: err.message });
     }
 };
 
 /* UPDATE */
-export const likePost = async (req, res) => {
+export const likePost = async (req: express.Request, res: express.Response): Promise<void> => {
     try {
         const { id } = req.params;
         const { userId } = req.body;
@@ -67,7 +68,7 @@ export const likePost = async (req, res) => {
         );
 
         res.status(200).json(updatedPost);
-    } catch (err) {
+    } catch (err: any) {
         res.status(404).json({ message: err.message });
     }
 };

@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const userIds = [
+const userIds: mongoose.Types.ObjectId[] = [
     new mongoose.Types.ObjectId(),
     new mongoose.Types.ObjectId(),
     new mongoose.Types.ObjectId(),
@@ -19,7 +19,7 @@ export const users = [
         email: "aaaaaaa@gmail.com",
         password: "$2b$10$dsasdgsagasda//G9JxQ4bQ8KXf4OAIe/X/AK9skyWUy",
         picturePath: "p11.jpeg",
-        friends: [],
+        friends: [] as mongoose.Types.ObjectId[],
         location: "San Fran, CA",
         occupation: "Software Engineer",
         viewedProfile: 14561,

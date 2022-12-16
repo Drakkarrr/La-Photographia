@@ -1,19 +1,20 @@
-import User from "../models/User.js";
+import express from 'express';
+import User from "../models/user.model";
 
 /* READ */
-export const getUser = async (req, res) => {
+export const getUser = async (req: express.Request, res: express.Response): Promise<void> => {
     try {
         const { id } = req.params;
         const user = await User.findById(id);
         res.status(200).json(user);
-    } catch (err) {
+    } catch (err: any) {
         res.status(404).json({ message: err.message });
     }
 };
 
-export const getUserFriends = async (req, res) => {
+export const getUserFriends = async (req: express.Request, res: express.Response): Promise<void> => {
     try {
-        const { id } = req.params;
+        const { id } = req.params as { id: string };
         const user = await User.findById(id);
 
         const friends = await Promise.all(
@@ -25,13 +26,13 @@ export const getUserFriends = async (req, res) => {
             }
         );
         res.status(200).json(formattedFriends);
-    } catch (err) {
+    } catch (err: any) {
         res.status(404).json({ message: err.message });
     }
 };
 
 /* UPDATE */
-export const addRemoveFriend = async (req, res) => {
+export const addRemoveFriend = async (req: express.Request, res: express.Response): Promise<void> => {
     try {
         const { id, friendId } = req.params;
         const user = await User.findById(id);
@@ -57,7 +58,7 @@ export const addRemoveFriend = async (req, res) => {
         );
 
         res.status(200).json(formattedFriends);
-    } catch (err) {
+    } catch (err: any) {
         res.status(404).json({ message: err.message });
     }
 };
