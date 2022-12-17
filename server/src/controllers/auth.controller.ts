@@ -1,9 +1,9 @@
-import express from 'express';
-import bcrypt from "bcrypt";
+import express from 'express'
+import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken";
-import User from "../models/user.model.js";
+import User from "../models/user.model.js"
 
-/* REGISTER USER */
+//! CONTROLLER TO HANDLE REGISTERING USERS 
 export const register = async (req: express.Request, res: express.Response): Promise<void> => {
     try {
         const {
@@ -17,9 +17,13 @@ export const register = async (req: express.Request, res: express.Response): Pro
             occupation,
         } = req.body
 
-        const salt: string = await bcrypt.genSalt();
-        const passwordHash: string = await bcrypt.hash(password, salt);
 
+        //! ENCRYPTING USER'S PASSWORD & GENERATING A SALT
+        const salt: string = await bcrypt.genSalt()
+        const passwordHash: string = await bcrypt.hash(password, salt)
+
+
+        //! CREATING NEW USER
         const newUser: any = new User({
             firstName,
             lastName,
@@ -38,14 +42,14 @@ export const register = async (req: express.Request, res: express.Response): Pro
     } catch (err: any) {
         res.status(500).json({ error: err.message })
     }
-};
+}
 
-/* LOGGING IN */
+//! HANDLER ON LOGGING IN USERS
 export const login = async (req: express.Request, res: express.Response): Promise<unknown> => {
     try {
         const { email, password } = req.body as { email: string; password: string }
         const user: unknown | any = await User.findOne({ email: email })
-        if (!user) return res.status(400).json({ msg: "User does not exist. " })
+        if (!user) return res.status(400).json({ msg: "User does not exist. " }) //! THROW ERROR IF USER DOES NOT EXIST
 
         const isMatch: boolean = await bcrypt.compare(password, user.password)
         if (!isMatch) return res.status(400).json({ msg: "Invalid credentials." })
@@ -57,4 +61,4 @@ export const login = async (req: express.Request, res: express.Response): Promis
     } catch (err: any) {
         res.status(500).json({ error: err.message })
     }
-};
+}

@@ -9,18 +9,21 @@ import morgan from 'morgan';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
+//!---------------------- FILE IMPORTS -------------------------------------------------
 import { register } from './controllers/auth.controller.js';
 import { createPost } from './controllers/posts.controller.js';
 import { verifyToken } from './middleware/auth.middleware.js';
-// import { users, posts } from "./data";
 
 import authRoutes from './routes/auth.routes.js';
 import userRoutes from './routes/users.routes.js';
 import postRoutes from './routes/posts.routes.js';
 
+// import Users from './models/user.model.js';
+// import Posts from './models/post.model.js';
+// import { users, posts } from "./data/dummyData.js";
 
 
-/* MIDDLEWARE CONFIGS */
+//! MIDDLEWARE CONFIGS
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -32,12 +35,12 @@ app.use(morgan('common'));
 app.use(bodyParser.json({ limit: '30mb', extended: true } as any));
 app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }));
 app.use(cors());
-app.use('/assets', express.static(path.join(__dirname, 'public/assets')));
+app.use('/assets', express.static(path.join(__dirname, '../public/assets')));
 
-/* FILE STORAGE */
+//! OUR LOCAL FILE STORAGE
 const storage: multer.StorageEngine = multer.diskStorage({
   destination: (req: express.Request, file: Express.Multer.File, cb: any) => {
-    cb(null, 'public/assets');
+    cb(null, '../public/assets');
   },
   filename: (req: express.Request, file: Express.Multer.File, cb: any) => {
     cb(null, file.originalname);
@@ -45,16 +48,23 @@ const storage: multer.StorageEngine = multer.diskStorage({
 });
 const upload: multer.Multer = multer({ storage });
 
-/* ROUTES WITH FILES */
+app.get('/', (req, res) => {
+  res.send('Hello to La Photographia API');
+});
+
+
+//! ROUTES FOR FILES UPLOAD
 app.post("/auth/register", upload.single("picture"), register);
 app.post("/posts", verifyToken, upload.single("picture"), createPost);
 
-/* ROUTES */
+
+//! ROUTES ENDPOINT OF THE APP
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
 app.use("/posts", postRoutes);
 
-/* MONGOOSE CONFIG */
+
+//! CONNECTING OUR API TO DATABASE
 const PORT: string | number = process.env.PORT || 8080;
 mongoose
   .set('strictQuery', true)
@@ -65,7 +75,8 @@ mongoose
   .then(() => {
     app.listen(PORT, () => console.log(`Server is running at Port: ${PORT}`));
 
-    /* ADD DATA ONE TIME */
+
+    //! ADDING THE DUMMY DATA I CREATED  FOR DEVELOPMENT PURPOSES
     // Users.insertMany(users);
     // Posts.insertMany(posts);
   })
