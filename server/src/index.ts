@@ -9,11 +9,14 @@ import morgan from 'morgan';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-import { register } from './controllers/auth.controller';
-import authRoutes from './routes/auth.routes';
+import { register } from './controllers/auth.controller.js';
+import { createPost } from './controllers/posts.controller.js';
+import { verifyToken } from './middleware/auth.middleware.js';
+// import { users, posts } from "./data";
 
-import userRoutes from './routes/users.routes';
-import postRoutes from './routes/posts.routes';
+import authRoutes from './routes/auth.routes.js';
+import userRoutes from './routes/users.routes.js';
+import postRoutes from './routes/posts.routes.js';
 
 
 
@@ -44,7 +47,7 @@ const upload: multer.Multer = multer({ storage });
 
 /* ROUTES WITH FILES */
 app.post("/auth/register", upload.single("picture"), register);
-// app.post("/posts", verifyToken, upload.single("picture"), createPost);
+app.post("/posts", verifyToken, upload.single("picture"), createPost);
 
 /* ROUTES */
 app.use("/auth", authRoutes);
@@ -63,8 +66,8 @@ mongoose
     app.listen(PORT, () => console.log(`Server is running at Port: ${PORT}`));
 
     /* ADD DATA ONE TIME */
-    // User.insertMany(users);
-    // Post.insertMany(posts);
+    // Users.insertMany(users);
+    // Posts.insertMany(posts);
   })
   .catch((error) => console.log(`${error} Failed to connect to Server`));
 

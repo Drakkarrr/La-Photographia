@@ -1,5 +1,5 @@
-import express from 'express';
-import User from "../models/user.model";
+import express from 'express'
+import User from "../models/user.model.js"
 
 /* READ */
 export const getUser = async (req: express.Request, res: express.Response): Promise<void> => {
@@ -18,7 +18,7 @@ export const getUserFriends = async (req: express.Request, res: express.Response
         const user = await User.findById(id);
 
         const friends = await Promise.all(
-            user.friends.map((id) => User.findById(id))
+            user.friends.map(id => User.findById(id))
         );
         const formattedFriends = friends.map(
             ({ _id, firstName, lastName, occupation, location, picturePath }) => {

@@ -1,6 +1,6 @@
 import express from 'express'
-import Post from "../models/post.model";
-import User from "../models/user.model";
+import Post from "../models/post.model.js";
+import User from "../models/user.model.js";
 
 /* CREATE */
 export const createPost = async (req: express.Request, res: express.Response): Promise<void> => {
