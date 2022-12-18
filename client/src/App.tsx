@@ -1,27 +1,37 @@
-import React from 'react'
-import RootLayout from './shared/components/layouts/RootLayout'
-import { Routes, Route } from 'react-router-dom'
-import HomePage from './pages/Homepage'
-import Dashboard from './pages/Dashboard'
-import { Login } from './components'
-import AboutPage from './pages/AboutPage'
-import NotFound from './pages/NotFound'
-import OrganizationsPage from './pages/OrganizationsPage'
+import { BrowserRouter, Navigate, Routes, Route } from 'react-router-dom'
+import HomePage from './pages/homePage'
+import LoginPage from './pages/loginPage'
+import ProfilePage from './pages/profilePage'
+import { useMemo } from 'react'
+import { useSelector } from 'react-redux'
+import { CssBaseline, ThemeProvider } from '@mui/material'
+import { createTheme } from '@mui/material/styles'
+import { themeSettings } from './theme'
 
-const App: React.FC = () => {
+function App() {
+  const mode = useSelector(state => state.mode)
+  const theme = useMemo(() => createTheme(themeSettings(mode)), [mode])
+  const isAuth = Boolean(useSelector((state: any) => state.token))
+
   return (
-    <>
-      <Routes>
-        {/* <Route element={<RootLayout />}>
-          <Route path='/' element={<HomePage />} />
-          <Route path='/about-us' element={<AboutPage />} />
-          <Route path='/organizations' element={<OrganizationsPage />} />
-          <Route path='*' element={<NotFound />} />
-        </Route> */}
-        <Route path='/login' element={<Login />} />
-        <Route path='/dashboard/*' element={<Dashboard />} />
-      </Routes>
-    </>
+    <div className='app'>
+      <BrowserRouter>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Routes>
+            <Route path='/' element={<LoginPage />} />
+            <Route
+              path='/home'
+              element={isAuth ? <HomePage /> : <Navigate to='/' />}
+            />
+            <Route
+              path='/profile/:userId'
+              element={isAuth ? <ProfilePage /> : <Navigate to='/' />}
+            />
+          </Routes>
+        </ThemeProvider>
+      </BrowserRouter>
+    </div>
   )
 }
 
