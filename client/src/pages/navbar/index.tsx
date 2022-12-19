@@ -23,7 +23,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 import { setMode, setLogout } from '../../store'
 import { useNavigate } from 'react-router-dom'
-import FlexBetween from '../../components/FlexBetween'
+import FlexBetween from '../../components/Layout'
 
 const Navbar = () => {
   const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false)
@@ -56,7 +56,7 @@ const Navbar = () => {
             },
           }}
         >
-          Sociopedia
+          La Photographia
         </Typography>
         {isNonMobileScreens && (
           <FlexBetween

@@ -3,7 +3,7 @@ import { Box, IconButton, Typography, useTheme } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { setFriends } from '../store'
-import FlexBetween from './FlexBetween'
+import FlexBetween from './Layout'
 import UserImage from './UserImage'
 
 const Friend = ({ friendId, name, subtitle, userPicturePath }) => {

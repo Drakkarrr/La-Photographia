@@ -17,7 +17,7 @@ import {
   IconButton,
   useMediaQuery,
 } from '@mui/material'
-import FlexBetween from '../../components/FlexBetween'
+import FlexBetween from '../../components/Layout'
 import Dropzone from 'react-dropzone'
 import UserImage from '../../components/UserImage'
 import WidgetWrapper from '../../components/WidgetWrapper'
