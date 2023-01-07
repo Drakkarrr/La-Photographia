@@ -60,6 +60,7 @@ const StyledBox = styled.div`
   .heading {
     font-weight: bold;
     text-transform: uppercase;
+    color: #087830;
   }
   h2 {
     font-size: 1.1rem;

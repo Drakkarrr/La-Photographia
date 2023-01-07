@@ -65,7 +65,7 @@ const Navbar = () => {
             gap='3rem'
             padding='0.1rem 1.5rem'
           >
-            <InputBase placeholder='Search...' />
+            <InputBase placeholder='Search Tags' />
             <IconButton>
               <Search />
             </IconButton>
@@ -107,7 +107,9 @@ const Navbar = () => {
               <MenuItem value={fullName}>
                 <Typography>{fullName}</Typography>
               </MenuItem>
-              <MenuItem onClick={() => dispatch(setLogout())}>Log Out</MenuItem>
+              <MenuItem onClick={() => dispatch(setLogout())}>
+                Sign Out
+              </MenuItem>
             </Select>
           </FormControl>
         </FlexBetween>

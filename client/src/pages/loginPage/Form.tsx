@@ -244,6 +244,7 @@ const Form = () => {
                 className='button'
                 fullWidth
                 type='submit'
+                onClick={() => alert('success!')}
                 sx={{
                   m: '2rem 0',
                   p: '1rem',
@@ -252,12 +253,12 @@ const Form = () => {
                   '&:hover': { color: palette.primary.main },
                 }}
               >
-                {isLogin ? 'LOGIN' : 'REGISTER'}
+                {isLogin ? 'LOGIN' : 'SIGN UP'}
               </Button>
               <Typography
                 className='textt'
                 onClick={() => {
-                  setPageType(isLogin ? 'register' : 'login')
+                  setPageType(isLogin ? 'sign up' : 'login')
                   resetForm()
                 }}
                 sx={{
@@ -270,7 +271,7 @@ const Form = () => {
                 }}
               >
                 {isLogin
-                  ? `Don't have an account? Register here`
+                  ? `Don't have an account? Sign Up here`
                   : 'Already have an account? Login here'}
               </Typography>
             </Box>
@@ -289,8 +290,14 @@ const StyledTextField = styled.div`
     .button {
       width: 7rem;
       border-radius: 50px;
+      color: #ffffff;
+      outline: 1px solid #ffffff;
+      background-color: transparent;
+      letter-spacing: 1px;
       &:hover {
-        outline: 1px solid #ffffff;
+        outline: 1px solid #087830;
+        color: #087830;
+        background-color: transparent;
         transition: cubic-bezier(0.165, 0.84, 0.44, 1) 0.5s;
       }
     }
@@ -299,6 +306,7 @@ const StyledTextField = styled.div`
     text-align: center;
     font-size: 1rem;
     font-weight: 500;
+    color: #ffffff;
     &:hover {
       color: #087830;
       transition: cubic-bezier(0.165, 0.84, 0.44, 1) 0.5s;
