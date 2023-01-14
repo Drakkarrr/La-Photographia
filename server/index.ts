@@ -19,9 +19,9 @@ import userRoutes from './routes/users.routes.js';
 import postRoutes from './routes/posts.routes.js';
 
 //! IMPORTING THE DUMMY DATA
-// import Users from './models/user.model.js';
-// import Posts from './models/post.model.js';
-// import { users, posts } from "./data/dummyData.js";
+import Users from './models/user.model.js';
+import Posts from './models/post.model.js';
+import { users, posts } from "./data/dummyData.js";
 
 
 //! MIDDLEWARE CONFIGS
@@ -79,8 +79,8 @@ mongoose
 
 
     //! ADDING THE DUMMY DATA I CREATED  FOR DEVELOPMENT PURPOSES
-    // Users.insertMany(users);
-    // Posts.insertMany(posts);
+    Users.insertMany(users);
+    Posts.insertMany(posts);
   })
   .catch((error) => console.log(`${error} Failed to connect to Server`));
 

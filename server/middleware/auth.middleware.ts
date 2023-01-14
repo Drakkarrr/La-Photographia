@@ -20,7 +20,7 @@ export const verifyToken = async (req: any, res: Response, next: express.NextFun
             token = token.slice(7, token.length).trimStart();
         }
 
-        const verified: string | jwt.JwtPayload = jwt.verify(token, process.env.JWT_SECRET);
+        const verified: string | jwt.JwtPayload = jwt.verify(token, process.env.JWT_SECRET as string);
         req.user = verified;
         next()
     } catch (err: any) {
