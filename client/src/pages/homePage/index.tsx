@@ -4,7 +4,7 @@ import Navbar from '../navbar'
 import UserWidget from '../widgets/UserWidget'
 import MyPostWidget from '../widgets/MyPostWidget'
 import PostsWidget from '../widgets/PostsWidget'
-import AdvertWidget from '../widgets/AdvertWidget'
+import AdvertWidget from '../widgets/Categories'
 import FriendListWidget from '../widgets/FriendListWidget'
 
 const HomePage = () => {

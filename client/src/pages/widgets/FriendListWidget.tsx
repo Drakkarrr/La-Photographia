@@ -35,7 +35,7 @@ const FriendListWidget = ({ userId }) => {
         fontWeight='500'
         sx={{ mb: '1.5rem' }}
       >
-        Friend List
+        Following
       </Typography>
       <Box display='flex' flexDirection='column' gap='1.5rem'>
         {friends.map(friend => (
@@ -43,7 +43,7 @@ const FriendListWidget = ({ userId }) => {
             key={friend._id}
             friendId={friend._id}
             name={`${friend.firstName} ${friend.lastName}`}
-            subtitle={friend.occupation}
+            subtitle={friend.department}
             userPicturePath={friend.picturePath}
           />
         ))}

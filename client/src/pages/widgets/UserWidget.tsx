@@ -42,7 +42,7 @@ const UserWidget = ({ userId, picturePath }) => {
     firstName,
     lastName,
     location,
-    occupation,
+    department,
     viewedProfile,
     impressions,
     friends,
@@ -72,7 +72,7 @@ const UserWidget = ({ userId, picturePath }) => {
             >
               {firstName} {lastName}
             </Typography>
-            <Typography color={medium}>{friends.length} friends</Typography>
+            <Typography color={medium}>{friends.length} Following</Typography>
           </Box>
         </FlexBetween>
         <ManageAccountsOutlined />
@@ -88,7 +88,7 @@ const UserWidget = ({ userId, picturePath }) => {
         </Box>
         <Box display='flex' alignItems='center' gap='1rem'>
           <WorkOutlineOutlined fontSize='large' sx={{ color: main }} />
-          <Typography color={medium}>{occupation}</Typography>
+          <Typography color={medium}>{department}</Typography>
         </Box>
       </Box>
 
@@ -103,6 +103,7 @@ const UserWidget = ({ userId, picturePath }) => {
           </Typography>
         </FlexBetween>
         <FlexBetween>
+          {/* <SchoolIcon /> */}
           <Typography color={medium}>Impressions of your post</Typography>
           <Typography color={main} fontWeight='500'>
             {impressions}
@@ -112,8 +113,7 @@ const UserWidget = ({ userId, picturePath }) => {
 
       <Divider />
 
-      {/* FOURTH ROW */}
-      <Box p='1rem 0'>
+      {/* <Box p='1rem 0'>
         <Typography fontSize='1rem' color={main} fontWeight='500' mb='1rem'>
           Social Profiles
         </Typography>
@@ -143,7 +143,7 @@ const UserWidget = ({ userId, picturePath }) => {
           </FlexBetween>
           <EditOutlined sx={{ color: main }} />
         </FlexBetween>
-      </Box>
+      </Box> */}
     </WidgetWrapper>
   )
 }

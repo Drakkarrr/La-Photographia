@@ -14,7 +14,7 @@ export const register = async (req: express.Request, res: express.Response): Pro
             picturePath,
             friends,
             location,
-            occupation,
+            department,
         } = req.body
 
 
@@ -32,7 +32,7 @@ export const register = async (req: express.Request, res: express.Response): Pro
             picturePath,
             friends,
             location,
-            occupation,
+            department,
 
             viewedProfile: Math.floor(Math.random() * 1000), //! For development purposes only
             impressions: Math.floor(Math.random() * 1000),   //! For development purposes only
