@@ -1,5 +1,5 @@
 
-# La Photographia
+# La Photographia - SoftEng Project 
 
 A web based social media photo gallery app for La Salle University - Ozamiz City.
 
